@@ -1,0 +1,63 @@
+<form  #heroForm="ngForm" (submit)="onSubmit(heroForm)">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label >Name:</label>
+      <input type="text" class="form-control " placeholder="Name" ngModel name="name" #name="ngModel" required minlength="6">
+      <div  class=" alert alert-danger" role="alert" *ngIf="name.errors?.required
+     && name.touched
+">
+        Yeu cau dien day du thong tin!!
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="name.errors?.minlength">
+        It nhat 6 ky tu!!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label >Email:</label>
+      <input type="text" class="form-control "  placeholder="Email" ngModel name="email" required #email="ngModel">
+    <div class="alert alert-danger" role="alert" *ngIf="email.errors?.required && email.touched">
+      Yeu cau dien day du thong tin!!
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="email.errors?.email">
+      Sai kieu Email!!
+    </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationServerUsername">Facebook:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend3">@</span>
+        </div>
+        <input type="text" class="form-control " id="validationServerUsername" placeholder="FaceBook" aria-describedby="inputGroupPrepend3"  ngModel name="facebook">
+
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationServer03">Twitter</label>
+      <input type="text" class="form-control " id="validationServer03" placeholder="Twitter" ngModel name="Twitter">
+
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer04">Website</label>
+      <input type="text" class="form-control " id="validationServer04" placeholder="Website" >
+
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationServer05">Tel</label>
+      <input type="text" class="form-control " id="validationServer05" placeholder="Tel" ngModel name="tel">
+
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit"[disabled]="heroForm.invalid">Submit form</button>
+</form>
+<pre>
+  {{heroForm.value | json}}
+</pre>
+<pre>
+  {{heroForm.controls.name?.errors | json}}
+  {{heroForm.touched | json}}
+<!--  {{heroForm.dirty | json}}-->
+
+</pre>
